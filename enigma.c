@@ -5,9 +5,7 @@
 #define TAMANO_ROTOR 26
 
 int indice_de(char letra, char *string) {
-    int i;
-    
-    for (i = 0; i < strlen(string); i++) {
+    for (int i = 0; i < strlen(string); i++) {
         if (string[i] == letra) {
             return i;
         }
@@ -32,39 +30,14 @@ char reemplazo_del_rotor_inverso(char letra, char rotor[TAMANO_ROTOR]) {
 }
 
 void desencriptar_mensaje(char *mensaje, int desplazamiento, char rotor1[TAMANO_ROTOR], char rotor2[TAMANO_ROTOR], char rotor3[TAMANO_ROTOR]) {
-    int i;
-
-    for (i = 0; i < strlen(mensaje); i++) {
+    for (int i = 0; i < strlen(mensaje); i++) {
         if (mensaje[i] >= 'A' && mensaje[i] <= 'Z') {
             mensaje[i] = reemplazo_del_rotor_inverso(mensaje[i], rotor3);
-        }
-    }
-
-    printf("Mensaje rotor 3: %s\n", mensaje);
-
-    for (i = 0; i < strlen(mensaje); i++) {
-        if (mensaje[i] >= 'A' && mensaje[i] <= 'Z') {
             mensaje[i] = reemplazo_del_rotor_inverso(mensaje[i], rotor2);
-        }
-    }
-
-    printf("Mensaje rotor 2: %s\n", mensaje);
-
-    for (i = 0; i < strlen(mensaje); i++) {
-        if (mensaje[i] >= 'A' && mensaje[i] <= 'Z') {
             mensaje[i] = reemplazo_del_rotor_inverso(mensaje[i], rotor1);
-        }
-    }
-
-    printf("Mensaje rotor 1: %s\n", mensaje);
-
-    for (i = 0; i < strlen(mensaje); i++) {
-        if (mensaje[i] >= 'A' && mensaje[i] <= 'Z') {
             mensaje[i] = desplazamiento_cesar_inverso(mensaje[i], desplazamiento + i);
         }
     }
-
-    printf("Mensaje César: %s\n", mensaje);
 }
 
 int main() {
